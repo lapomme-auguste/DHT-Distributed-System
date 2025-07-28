@@ -8,10 +8,13 @@ Each peer will know the name of the bootstrap server from a command line argumen
 
 Each peer starts by contacting the bootstrap server. The bootstrap server maintains the ring, thus can tell the joining peer immediately where their place is in the ring. The bootstrap server will inform each of the peers from the ring that need to update their predecessor and the successor in the ring, i.e., the peer before and the peer after the insertion point.
 
-//Instructions to run//
+**Instructions to run**
+
 Run command: docker build . -f BootstrapDockerfile -t prj5-bootstrap && docker build . -f PeerDockerfile -t prj5-peer && docker build . -f ClientDockerfile -t prj5-client  
 Run command: docker compose -f <docker compose file> up
 This is all that is needed.
+
+
 
 To run testcases, use the 5 given docker composes.  Client behavior is determined based on which testcase it is.
 
