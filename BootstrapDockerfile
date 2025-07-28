@@ -1,0 +1,19 @@
+# Use Ubuntu 22.04 as the base image
+FROM ubuntu:22.04
+
+# Install Java 17
+RUN apt-get update && \
+    apt-get install -y openjdk-17-jdk wget
+
+# Copy BootstrapServer.java to the container
+ADD BootstrapServer.java /app/BootstrapServer.java
+WORKDIR /app/
+
+# Compile the Java program
+RUN javac BootstrapServer.java
+
+# Expose port for communication
+EXPOSE 1234
+
+# Run the bootstrap server
+ENTRYPOINT ["java", "BootstrapServer"]

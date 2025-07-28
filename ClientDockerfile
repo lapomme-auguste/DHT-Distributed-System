@@ -1,0 +1,16 @@
+# Use Ubuntu 22.04 as the base image
+FROM ubuntu:22.04
+
+# Install Java 17
+RUN apt-get update && \
+    apt-get install -y openjdk-17-jdk wget
+
+# Copy Client.java to the container
+ADD Client.java /app/Client.java
+WORKDIR /app/
+
+# Compile the Client Java program
+RUN javac Client.java
+
+# Run the Client program with arguments
+ENTRYPOINT ["java", "Client"]

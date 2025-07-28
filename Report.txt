@@ -1,0 +1,46 @@
+My algorithm
+
+How the server works:
+The server will start up. When it receives join requests, it orders its new peer list and creates a communication channel with
+this peer. It will keep track to update peers predecessor and successor and let new peers join. Then it awaits for the client to 
+ask for something. When it receives that request, it forwards it to the first peer in the ring.
+
+Then when it gets the response, it will communicate with the client, telling what the nodes responded.
+
+
+How the peer works:
+The peer will wait for its delay and then send over its join request. Once it gets the response from its server, it receives its 
+predecessor and successor and it will set up communication with it. After that it waits for another call. If it is the first in the 
+ring, it could receive the store or retrieve id. It will check if it should store or if it has it. If it does, it reaches out to 
+the server and tells it.
+
+If it does not have it, or should not store it, it sends it down the ring to its successor. Its successor will go through this 
+process as well. And so until it reaches the end.
+
+
+How the client works:
+The client starts up and starts listening. After the delay given it sees which testcase it is. If it is in the 3 case, it will send
+a request to store an object that doesn't already exist in any of the objects. I randomly chose 58 with client id 1. Next if it is
+testcase 4, it will send a request to a retrieve an already present object, like 2. I did also test with getting a newly stored object
+and it worked, you just need a delay between the ask to store and the ask to retrieve. Lastly, there is testcase 5. In this case,
+the client will ask for an object that is  not present, like 72. You could also ask for an item present but with the wrong client id
+and that should also return not stored.
+
+
+Struggles:
+One of my main struggles was trying to keep constant communication between the different elements of the program. I did not want to
+create new links of communications everytime we want to communicate the server and the peer. But unlike other projects in the class
+we don't have a hostfile. Instead the server creates the connections when it sees the join request or first request from the client.
+Peers will create communications when their predecessors or successors change.
+
+Another general struggle was just how to make the communication between a server, a client and some peers. But once I wrapped my
+head around the fact that it was just like before just now in different files it was easier to do.
+
+
+The testcases:
+- For testcase 3, it is hardcoded that the client will request to store 58 with client Id 1. This means that node 66 should store 
+58::1 in its object txt file.
+- For testcase 4, it is hardcoded that the client will request to retrieve 2 with client id 1. This means that node 5 should return
+2 as it is already present in its objects file with client id 1.
+- For testcase 5, it is hardcoded that the client will request to retrieve 72 with client id 1. This means that the request should
+go around the ring and realize that it is not present anywhere.

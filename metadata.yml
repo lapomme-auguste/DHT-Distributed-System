@@ -1,0 +1,12 @@
+---
+:id: 323250551
+:submitters:
+- :name: Auguste Lapomme
+  :email: lapomme.a@northeastern.edu
+:created_at: !ruby/object:ActiveSupport::TimeWithZone
+  utc: 2025-04-07 22:29:48.181905000 Z
+  zone: !ruby/object:ActiveSupport::TimeZone
+    name: America/Los_Angeles
+  time: 2025-04-07 15:29:48.181905000 Z
+:status: processed
+:score: 100.0
