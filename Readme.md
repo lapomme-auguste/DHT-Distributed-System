@@ -7,15 +7,15 @@ This is all that is needed.
 
 To run testcases, use the 5 given docker composes.  Client behavior is determined based on which testcase it is.
 
-Testcase 1:
+Testcase 1: After the bootstrap server started, peers join the ring one by one, the list of peers joining the ring is with IDs in increasing order. The first peer is the peer with ID 1.
 
-Testcase 2:
+Testcase 2: Same as above, but the list of peers that will join the list is with IDs in random order.
 
-Testcase 3:
+Testcase 3: Client wants to store an object with a given ID. If the object is successfully stored, the client should print "STORED: <objectID>".
 
-Testcase 4:
+Testcase 4: Client wants to retrieve an object that was previously stored with a given ID. If the object is successfully retrieved, the client should print "RETRIEVED: <objectID>".
 
-Testcase 5:
+Testcase 5: Client wants to retrieve an object with a given ID, but the object does not exist. As in TESTCASE 4 an object should only be retrieved if its record matches both the clientID and the objectID. If the object does not exist the bootstrap server should return -1 to the client, with the meaning that object was not found—this is detected if the request went around the ring without the object being found. The client should print "NOT FOUND: <objectID>".
 
 
 Code is created with Java
