@@ -1,5 +1,10 @@
 Auguste Lapomme
 
+I implemented a DHT like CHORD and store and retrieve objects from it. All peers and objects are identified by IDs from 1 to 127.
+There is a bootstrap server that maintains the ring as peers join, and can tell each peer where their place is in the ring. The bootstrap server is not doing any monitoring of the peers and the peers do not implement any heartbeat service.
+Each peer will know the name of the bootstrap server from a command line argument. Each peer maintains the predecessor and the successor peer in the ring. Each peer also maintains a file with stored objects. You can assume that each peer will have a pre-populated object store. The file consists of lines looking like this: clientID::objectID
+Each peer starts by contacting the bootstrap server. The bootstrap server maintains the ring, thus can tell the joining peer immediately where their place is in the ring. The bootstrap server will inform each of the peers from the ring that need to update their predecessor and the successor in the ring, i.e., the peer before and the peer after the insertion point.
+
 Instructions to run
 Run command: docker build . -f BootstrapDockerfile -t prj5-bootstrap && docker build . -f PeerDockerfile -t prj5-peer && docker build . -f ClientDockerfile -t prj5-client  
 Run command: docker compose -f <docker compose file> up
